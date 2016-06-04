@@ -1,7 +1,0 @@
-lha: stable 1.14i-ac20050924p1 (bottled), HEAD
-Utility for creating and opening lzh archives
-https://lha.osdn.jp
-Conflicts with: lhasa
-/usr/local/Cellar/lha/1.14i-ac20050924p1 (4 files, 143.0K) *
-  Poured from bottle on 2016-06-03 at 22:59:11
-From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/lha.rb

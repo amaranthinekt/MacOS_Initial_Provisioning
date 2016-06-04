@@ -1,6 +1,0 @@
-pkg-config: stable 0.29.1 (bottled)
-Manage compile and link flags for libraries
-https://freedesktop.org/wiki/Software/pkg-config/
-/usr/local/Cellar/pkg-config/0.29.1 (10 files, 627.2K) *
-  Poured from bottle on 2016-06-03 at 22:56:53
-From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/pkg-config.rb

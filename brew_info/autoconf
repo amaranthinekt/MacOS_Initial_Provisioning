@@ -1,9 +1,0 @@
-autoconf: stable 2.69 (bottled)
-Automatic configure script builder
-https://www.gnu.org/software/autoconf
-/usr/local/Cellar/autoconf/2.69 (70 files, 3.0M) *
-  Poured from bottle on 2016-06-03 at 22:56:38
-From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/autoconf.rb
-==> Caveats
-Emacs Lisp files have been installed to:
-  /usr/local/share/emacs/site-lisp/autoconf

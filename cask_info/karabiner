@@ -1,9 +1,0 @@
-karabiner: 10.18.0
-Karabiner
-https://pqrs.org/osx/karabiner/
-/opt/homebrew-cask/Caskroom/karabiner/10.18.0 (3.6M)
-https://github.com/caskroom/homebrew-cask/blob/master/Casks/karabiner.rb
-==> Contents
-  /Applications/Karabiner.app/Contents/Library/vendor/bin/blueutil (binary)
-  /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position (binary)
-  Karabiner.sparkle_guided.pkg (pkg)

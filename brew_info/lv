@@ -1,6 +1,0 @@
-lv: stable 4.51 (bottled)
-Powerful multi-lingual file viewer/grep
-https://web.archive.org/web/20160310122517/http://www.ff.iij4u.or.jp/~nrt/lv/
-/usr/local/Cellar/lv/4.51 (6 files, 486.1K) *
-  Poured from bottle on 2016-06-03 at 22:57:14
-From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/lv.rb
