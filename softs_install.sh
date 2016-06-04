@@ -28,3 +28,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Ansibleを実行
 ansible-playbook -i hosts ansible_playbook/localhost.yml
+
+# ansible caskにないものをmas経由で
+brew install mas
+
+mas install 540348655 #Monostnap
+
+
