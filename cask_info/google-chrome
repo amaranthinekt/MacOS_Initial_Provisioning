@@ -1,0 +1,7 @@
+google-chrome: latest
+Google Chrome
+https://www.google.com/chrome/
+/opt/homebrew-cask/Caskroom/google-chrome/latest (3 files, 288K)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/google-chrome.rb
+==> Contents
+  Google Chrome.app (app)

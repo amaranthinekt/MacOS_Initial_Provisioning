@@ -1,0 +1,27 @@
+wget: stable 1.17.1 (bottled), HEAD
+Internet file retriever
+https://www.gnu.org/software/wget/
+/usr/local/Cellar/wget/1.17.1 (9 files, 1.5M) *
+  Poured from bottle on 2016-06-03 at 22:56:01
+From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/wget.rb
+==> Dependencies
+Build: xz, pkg-config
+Recommended: openssl
+Optional: libressl, pcre, libmetalink, gpgme
+==> Options
+--with-debug
+	Build with debug support
+--with-gpgme
+	Build with gpgme support
+--with-iri
+	Enable iri support
+--with-libmetalink
+	Build with libmetalink support
+--with-libressl
+	Build with libressl support
+--with-pcre
+	Build with pcre support
+--without-openssl
+	Build without openssl support
+--HEAD
+	Install HEAD version

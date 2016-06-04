@@ -1,0 +1,7 @@
+adobe-reader: 2015.016.20039
+Adobe Acrobat Reader DC
+https://www.adobe.com/products/reader.html
+/opt/homebrew-cask/Caskroom/adobe-reader/2015.016.20039 (141M)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/adobe-reader.rb
+==> Contents
+  AcroRdrDC_1501620039_MUI.pkg (pkg)

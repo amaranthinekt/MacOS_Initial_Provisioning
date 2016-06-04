@@ -1,0 +1,6 @@
+tree: stable 1.7.0 (bottled)
+Display directories as trees (with optional color/HTML output)
+http://mama.indstate.edu/users/ice/tree/
+/usr/local/Cellar/tree/1.7.0 (7 files, 113.1K) *
+  Poured from bottle on 2016-06-03 at 22:57:07
+From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/tree.rb

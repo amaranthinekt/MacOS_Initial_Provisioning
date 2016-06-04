@@ -1,0 +1,11 @@
+source-highlight: stable 3.1.8 (bottled)
+Source-code syntax highlighter
+https://www.gnu.org/software/src-highlite/
+/usr/local/Cellar/source-highlight/3.1.8_1 (421 files, 6.1M) *
+  Poured from bottle on 2016-06-03 at 23:06:10
+From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/source-highlight.rb
+==> Dependencies
+Required: boost
+==> Caveats
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d

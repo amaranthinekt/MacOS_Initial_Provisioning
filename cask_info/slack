@@ -1,0 +1,7 @@
+slack: 2.0.3
+Slack
+https://slack.com/
+/opt/homebrew-cask/Caskroom/slack/2.0.3 (0B)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/slack.rb
+==> Contents
+  Slack.app (app)

@@ -1,0 +1,7 @@
+google-japanese-ime: latest
+Google Japanese Input Method Editor
+https://www.google.co.jp/ime/
+/opt/homebrew-cask/Caskroom/google-japanese-ime/latest (2 files, 59M)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/google-japanese-ime.rb
+==> Contents
+  GoogleJapaneseInput.pkg (pkg)

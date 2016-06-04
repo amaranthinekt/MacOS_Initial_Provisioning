@@ -1,0 +1,8 @@
+gitx: 0.7.1
+GitX
+http://gitx.frim.nl/
+/opt/homebrew-cask/Caskroom/gitx/0.7.1 (0B)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/gitx.rb
+==> Contents
+  GitX.app (app)
+  /Applications/GitX.app/Contents/Resources/gitx (binary)
