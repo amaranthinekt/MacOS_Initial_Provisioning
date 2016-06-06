@@ -143,6 +143,8 @@ fi
 defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
 
 
+# Firewall =======================
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 
 # ログアウト or 再起動が必要 ===========================================
