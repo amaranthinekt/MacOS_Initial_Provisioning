@@ -147,8 +147,7 @@ defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 # vimrc copy =======================
-cp ./_.vimrc ~/
-mv ~/_.vimrc ~/.vimrc
+cp ./_.vimrc ~/.vimrc
 
 # ログアウト or 再起動が必要 ===========================================
 sudo reboot
