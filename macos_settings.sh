@@ -148,6 +148,7 @@ sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 # vimrc copy =======================
 cp ./_.vimrc ~/.vimrc
+cp -r ./_.vim ~/.vim
 
 # ログアウト or 再起動が必要 ===========================================
 sudo reboot
