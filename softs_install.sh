@@ -33,5 +33,21 @@ ansible-playbook -i hosts ansible_playbook/localhost.yml
 brew install mas
 
 mas install 540348655 #Monostnap
+mas install 417375580 #BetterSnapTool
 
-
+mas install 803453959 #Slack
+mas install 1024640650 #CotEditor
+mas install 568494494 #Pocket
+mas install 896624060 #kobito
+mas install 492068728 #Yummy FTP
+mas install 414855915 #WinArchiver Lite
+mas install 409183694 #Keynote
+mas install 891953906 #Buffer
+mas install 443773246 #Rename It
+mas install 493949693 #iMage Tools
+mas install 409789998 #Twitter
+mas install 411246225 #Caffeine
+mas install 407963104 #Pixelmator
+mas install 880001334 #Reeder
+mas install 508957583 #Nozbe
+mas install 848311469 #Write
