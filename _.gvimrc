@@ -1,7 +1,8 @@
-colorscheme molokai "desert
+set t_Co=256
+colorscheme monokai "desert
 
 set lines=60
-set columns=100
+set columns=130
 
 augroup numberwidth
     autocmd!

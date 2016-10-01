@@ -10,7 +10,7 @@ set number "行番号を表示する
 "set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
-set tabstop=4 "インデントをスペース4つ分に設定
+set tabstop=2 "インデントをスペース2つ分に設定
 set expandtab "タブでのインデントをスペースに
 set smartindent "オートインデント
 set clipboard=unnamed
@@ -22,6 +22,14 @@ set smartcase "検索文字列に大文字が含まれている場合は区別�
 set wrapscan "検索時に最後まで行ったら最初に戻る
 nnoremap <ESC><ESC> :nohlsearch<CR>
 set hls
+
+"レジスタに格納しないようにする
+nnoremap x "_x
+vnoremap x "_x
+nnoremap c "_c
+vnoremap c "_c
+nnoremap d "_d
+vnoremap d "_d
 
 "####ステータスライン#####
 set laststatus=2
@@ -72,7 +80,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('mrtazz/simplenote.vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('mattn/emmet-vim')
-  call dein#add('tomasr/molokai')
+"  call dein#add('tomasr/molokai')
   call dein#add('scrooloose/nerdtree')
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('szw/vim-tags')
@@ -178,11 +186,17 @@ autocmd FileType eruby imap <buffer><expr><tab>
     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
     \ "\<tab>"
 
+autocmd FileType erb imap <buffer><expr><tab>
+    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+    \ "\<tab>"
+
+
 "colorscheme
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-"set background=dark
+"call dein#add('crusoexia/vim-monokai')
+colorscheme monokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+set background=dark
 
 "indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -191,7 +205,8 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=darkgray  ctermbg=darkgray
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightgray ctermbg=lightgray
 "let g:indent_guides_auto_colors = 0
-"set ts=2 sw=2 et "indent guide
+set ts=2 sw=2 et "indent guide
+let g:indent_guides_guide_size = 1
 "hi IndentGuidesOdd  ctermbg=black
 "hi IndentGuidesEven ctermbg=darkgrey
 
@@ -264,7 +279,7 @@ let g:lightline = {
 	  \	'component_function' : {
 	  \		'fugitive' : 'MyFugitive',
 	  \	}
-    \ }
+   \ }
 let g:syntastic_mode_map = { 'mode': 'passive' }
 "augroup AutoSyntastic
 "  autocmd!
@@ -290,7 +305,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 "let g:syntastic_mode_map = {'mode': 'passive'}
 let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['ruby'] }
+                            \ 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
 
 " 入力モードでのカーソル移動
@@ -301,5 +316,4 @@ inoremap <C-l> <Right>
 
 " 保存時に自動で空白を保存
 autocmd BufWritePre * :FixWhitespace
-
 
