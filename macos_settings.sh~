@@ -151,11 +151,6 @@ cp ./_.vimrc ~/.vimrc
 cp -r ./_.vim ~/.vim
 cp ./_.gvimrc ~/gvimrc
 
-gem install rsense
-gem install rubocop
-gem install rdoc
-gem install refe2
-
 # ログアウト or 再起動が必要 ===========================================
 sudo reboot
 

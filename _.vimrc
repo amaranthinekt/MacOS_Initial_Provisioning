@@ -1,6 +1,13 @@
 set nocompatible
 set t_Co=256
 
+"colorscheme
+"call dein#add('crusoexia/vim-monokai')
+colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+set background=dark
+
 "terminal title bar view fix
 set notitle
 let &titleold=getcwd()
@@ -9,12 +16,13 @@ let &titleold=getcwd()
 set number "行番号を表示する
 "set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
-syntax on "コードの色分け
+syntax enable "コードの色分け
 set tabstop=2 "インデントをスペース2つ分に設定
 set expandtab "タブでのインデントをスペースに
 set smartindent "オートインデント
 set clipboard=unnamed
-set listchars=eol:$,tab:>\ 
+set list
+set listchars=eol:↲,tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 "#####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
@@ -24,8 +32,8 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 set hls
 
 "レジスタに格納しないようにする
-nnoremap x "_x
-vnoremap x "_x
+"nnoremap x "_x
+"vnoremap x "_x
 nnoremap c "_c
 vnoremap c "_c
 nnoremap d "_d
@@ -51,6 +59,7 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead *.html.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.vimrc setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
 
 " dein
 " Vim起動完了時にインストール
@@ -88,6 +97,10 @@ if dein#load_state(s:plugin_dir)
   call dein#add('scrooloose/syntastic')
   call dein#add('tpope/vim-surround')
   call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('thinca/vim-zenspace')
+
+"全角空白を常にハイライト
+let g:zenspace#default_mode = 'on'
 
   " インストール後ビルドする場合
   "call dein#add('Shougo/vimproc.vim', {
@@ -140,7 +153,7 @@ if dein#load_state(s:plugin_dir)
   " 指定のファイルタイプ使う場合
   call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 	call dein#add('tpope/vim-bundler', {'on_ft' : 'ruby'})
-  call dein#add('ngmy/vim-rubocop', {'on_ft' : 'ruby'}) "syntasticから利用するからコメントアウト
+  call dein#add('ngmy/vim-rubocop', {'on_ft' : 'ruby'})
   call dein#add('thinca/vim-ref', {'on_ft' : 'ruby'})
   "call dein#add('thinca/vim-ref-ri', {'on_ft' : 'ruby'})
 	let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe' "refeコマンドのパス
@@ -190,13 +203,6 @@ autocmd FileType erb imap <buffer><expr><tab>
     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
     \ "\<tab>"
 
-
-"colorscheme
-"call dein#add('crusoexia/vim-monokai')
-colorscheme monokai
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-set background=dark
 
 "indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -305,7 +311,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 "let g:syntastic_mode_map = {'mode': 'passive'}
 let g:syntastic_mode_map = { 'mode': 'passive',
-                            \ 'active_filetypes': ['ruby'] }
+                            \ 'active_filetypes': ['ruby', 'yaml'] }
 let g:syntastic_ruby_checkers = ['rubocop']
 
 " 入力モードでのカーソル移動
@@ -316,4 +322,44 @@ inoremap <C-l> <Right>
 
 " 保存時に自動で空白を保存
 autocmd BufWritePre * :FixWhitespace
+
+" NERDtreeを表示
+autocmd vimenter * NERDTree
+
+" NERDTREEショートカットキーを設定
+map <C-n> :NERDTreeToggle<CR>
+
+" NERDTREE起動時にブックマークを表示
+let NERDTreeShowBookmarks=1
+
+" NERDtreeの起動時に表示する
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable  = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg) " , guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guifg='. a:guifg
+ " ' guibg='. a:guibg .
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',)
+call NERDTreeHighlightFile('md',     'cyan',    'none', 'lightblue')
+call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',)
+call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',)
+call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',)
+call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',)
+call NERDTreeHighlightFile('html',   'blue',  'none', 'blue',)
+call NERDTreeHighlightFile('styl',   'cyan',    'none', 'lightblue',  )
+call NERDTreeHighlightFile('css',    'cyan',    'none', 'lightblue',  )
+call NERDTreeHighlightFile('rb',     '160',     'none', 'red')
+call NERDTreeHighlightFile('js',     '2',       'none', 'lightgreen', )
+call NERDTreeHighlightFile('php',    '55',      'none', 'magenta')
+
+" 保護
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+nnoremap Q <Nop>
+
 
