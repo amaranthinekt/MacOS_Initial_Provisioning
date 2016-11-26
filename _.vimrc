@@ -4,6 +4,7 @@ set t_Co=256
 "colorscheme
 "call dein#add('crusoexia/vim-monokai')
 colorscheme molokai
+let s:molokai_original = 1
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 set background=dark
@@ -98,6 +99,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('tpope/vim-surround')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('thinca/vim-zenspace')
+  call dein#add('kurocode25/mdforvim')
+  call dein#add('kana/vim-smartinput')
 
 "全角空白を常にハイライト
 let g:zenspace#default_mode = 'on'
@@ -113,50 +116,50 @@ let g:zenspace#default_mode = 'on'
 
   " 条件によって使ったり使わなかったり制御する場合
   call dein#add('Shougo/neocomplcache.vim') ", {'if' : has('lua') })
-	" Disable AutoComplPop.
-	let g:acp_enableAtStartup = 0
-	" Use neocomplcache.
-	let g:neocomplcache_enable_at_startup = 1
-	" Use smartcase.
-	let g:neocomplcache_enable_smart_case = 1
-	" Set minimum syntax keyword length.
-	let g:neocomplcache_min_syntax_length = 3
-	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+  " Disable AutoComplPop.
+  let g:acp_enableAtStartup = 0
+  " Use neocomplcache.
+  let g:neocomplcache_enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplcache_enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplcache_min_syntax_length = 3
+  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-	let g:neocomplcache_enable_camel_case_completion = 1
-	let g:neocomplcache_enable_underbar_completion = 1
+  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_underbar_completion = 1
 
 
-	" 補完
-	call dein#add('Shougo/neocomplcache-rsense.vim') ", {'autoload' : { 'insert' : 1, 'filetypes' : 'ruby' }})
-	if !exists('g:neocomplcache_omni_patterns')
-		let g:neocomplcache_omni_patterns = {}
-	endif
-	let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-	autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-	"rsenseのインストールフォルダがデフォルトと異なるので設定
-	let g:rsenseHome = expand("/Users/amaranthine/.rbenv/shims/rsense")
-	let g:rsenseUseOmniFunc = 1
+  " 補完
+  call dein#add('Shougo/neocomplcache-rsense.vim') ", {'autoload' : { 'insert' : 1, 'filetypes' : 'ruby' }})
+  if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+  endif
+  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+  "rsenseのインストールフォルダがデフォルトと異なるので設定
+  let g:rsenseHome = expand("/Users/amaranthine/.rbenv/shims/rsense")
+  let g:rsenseUseOmniFunc = 1
 
-	" 環境変数RSENSE_HOMEに'/usr/local/bin/rsense'を指定しても動く
-	"let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+  " 環境変数RSENSE_HOMEに'/usr/local/bin/rsense'を指定しても動く
+  "let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 
   " 依存関係がある場合
   call dein#add('Shougo/unite.vim')
   call dein#add('ujihisa/unite-colorscheme', {'depends' : 'Shougo/unite.vim'})
   call dein#add('basyura/unite-rails', {'depends': 'Shougo/unite.vim'})
-	call dein#add('Shougo/unite-outline', {'depends': 'Shougo/unite.vim'})
+  call dein#add('Shougo/unite-outline', {'depends': 'Shougo/unite.vim'})
 
   " 手動でcall dein#source('プラグイン名')して使い始める場合
   "call dein#add('Shougo/vimfiler', {'lazy' : 1})
 
   " 指定のファイルタイプ使う場合
   call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
-	call dein#add('tpope/vim-bundler', {'on_ft' : 'ruby'})
+  call dein#add('tpope/vim-bundler', {'on_ft' : 'ruby'})
   call dein#add('ngmy/vim-rubocop', {'on_ft' : 'ruby'})
   call dein#add('thinca/vim-ref', {'on_ft' : 'ruby'})
   "call dein#add('thinca/vim-ref-ri', {'on_ft' : 'ruby'})
-	let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe' "refeコマンドのパス
+  let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe' "refeコマンドのパス
   call dein#add('tpope/vim-endwise', {'on_ft': 'ruby'})
   call dein#add('vim-scripts/ruby-matchit', {'on_ft': 'ruby'})
 
@@ -324,7 +327,7 @@ inoremap <C-l> <Right>
 autocmd BufWritePre * :FixWhitespace
 
 " NERDtreeを表示
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 " NERDTREEショートカットキーを設定
 map <C-n> :NERDTreeToggle<CR>
@@ -339,9 +342,9 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg) " , guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guifg='. a:guifg
- " ' guibg='. a:guibg .
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guifg='. a:guifg
+  " ' guibg='. a:guibg .
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',)
