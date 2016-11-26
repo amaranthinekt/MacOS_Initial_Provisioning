@@ -1,5 +1,0 @@
-autoload/simplenote.py/simplenote/simplenote.py
-autoload/simplenote.vim
-plugin/simplenote.vim
-doc/simplenote.txt
-syntax/simplenote.vim
