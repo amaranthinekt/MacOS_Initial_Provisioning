@@ -31,8 +31,13 @@ defaults write com.apple.finder ShowPathbar -bool true
 # chflags nohidden ~/Library #効かない
 
 # すべてのファイルの拡張子を表示
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write -g AppleShowAllExtensions -bool true
 
+# ========== New Finder windows show ==========
+defaults write com.apple.finder NewWindowTarget -string "${HOME}"
+
+# ========== Show warning before emptying the Trash ==========
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Finderの再起動
 killall Finder
@@ -45,13 +50,13 @@ killall Finder
 defaults write com.apple.dock persistent-apps -array
 
 # Set the icon size （アイコンサイズの設定）
-defaults write com.apple.dock tilesize -int 30
+defaults write com.apple.dock tilesize -int 64
 
 # Magnificate the Dock （Dock の拡大機能を入にする）
 defaults write com.apple.dock magnification -bool true
 
 # Set Dock orientation to left
-defaults write com.apple.dock orientation -string “left”
+defaults write com.apple.dock orientation left
 
 
 # Bottom left screen corner → Mission Control （左下 → Mission Control）
@@ -68,8 +73,6 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Enable `Tap to click` （タップでクリックを有効にする）
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Save screenshots as PNGs （スクリーンショット保存形式をPNGにする）
 defaults write com.apple.screencapture type -string "png"
@@ -78,26 +81,26 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Hide the battery percentage from the menu bar （バッテリーのパーセントを表示にする）
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults write com.apple.menuextra.battery ShowPercent -string "Yes"
 
-# Date options: Show the day of the week: on （日付表示設定、曜日を表示）
-defaults write com.apple.menuextra.clock 'DateFormat' -string 'yyyy/MM/dd HH:mm'
+# Date options: Show the day of the week: on （曜日を表示）
+defaults write com.apple.menuextra.clock DateFormat -string "EEE HH:mm"
 
 # Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
 
 # ライブ変換をオフにします
 defaults write com.apple.inputmethod.Kotoeri 'JIMPrefLiveConversionKey' -bool false
 killall -HUP JapaneseIM
 
 # Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write .GlobalPreferences com.apple.swipescrolldirection -bool false
 
 # key repeat delay
 defaults write -g InitialKeyRepeat -int 15
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write .GlobalPreferences InitialKeyRepeat -int 5
 
 # 2. [システム環境設定]，[キーボード] の pnl[キーボード] > chb[F1、F2 などのすべてのキーを標準ファンクションキーとして使用] = "オン"
 defaults write -g com.apple.keyboard.fnState -bool true
@@ -123,7 +126,7 @@ defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 # Add a context menu item for showing the `Web Inspector` in web views
 # コンテキストメニューにWebインスペクタを追加
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+defaults write .GlobalPreferences WebKitDeveloperExtras -bool true
 
 # Show Safari's Status Bar （ステータスバーを表示）
 defaults write com.apple.Safari ShowStatusBar -bool true
