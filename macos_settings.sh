@@ -139,21 +139,6 @@ defaults write .GlobalPreferences WebKitDeveloperExtras -bool true
 # Show Safari's Status Bar （ステータスバーを表示）
 defaults write com.apple.Safari ShowStatusBar -bool true
 
-
-# Terminal Theme 設定 ==================
-# Use a custom theme （カスタムテーマを使う、そのテーマをデフォルトに設定する）
-# 本スクリプトと同ディレクトリにある Terminal_Profile_Basic_Customized.terminal を読み込む
-TERM_PROFILE='Terminal_Profile_Basic_Customized';
-TERM_PATH='./';
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-    open "$TERM_PATH$TERM_PROFILE.terminal"
-    defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
-    defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
-fi
-defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
-
-
 # Firewall =======================
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
@@ -179,7 +164,39 @@ echo ""
 
 echo "ディスプレイの描画サイズなどdefaultsコマンドでは調整できないものがあります。設定アプリから見直してください。"
 
-# ログアウト or 再起動が必要 ===========================================
+# zsh ===========================
+cp ./_.zshrc ~/.zshrc
+
+brew install zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  sudo chmod -R go-w '/opt/homebrew/share'
+  autoload -Uz compinit
+  rm -f ~/.zcompdump
+  compinit
+fi
+
+brew install zsh-autosuggestions
+echo "# zsh" >> .zshrc
+echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+echo "" >> .zshrc
+
+source ~/.zshrc
+
+# zsh フレームワーク Zim =============
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+# sed -> gnu sed
+brew install gnu-sed
+echo "alias sed='gsed'" >> .zshrc
+source ~/.zshrc
+
+# theme: https://zimfw.sh/docs/themes/
+sed s/asciiship/eriner/ ~/.zimrc
+
+
+# ログアウト or 再起動が必要 ===========
 echo ""
 echo "再起動しますか？（y/N） 再起動後、'macos_apps_install.sh'を実行してください。"
 

@@ -63,15 +63,19 @@ brew install vivaldi
 # brew install vagrant
 # brew install virtualbox
 brew install visual-studio-code
-brew install filezilla
+brew install alfred
 brew install iterm2
 brew install adobe-reader
 brew install vlc
 brew install imageoptim
 brew install keka
 brew install docker
+brew install docker-compose
 brew install virtualbox
 brew install bitwarden
+brew install bettertouchtool
+brew install onyx
+brew install cd-to
 
 # quickLook plugin all
 brew install qlcolorcode qlstephen qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase
@@ -79,13 +83,7 @@ brew install qlcolorcode qlstephen qlmarkdown quicklook-json webpquicklook suspi
 brew install phpstorm
 brew install rubymine
 
-# Ansible用アプリケーションインストール先パス指定
-#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# Ansibleを実行
-#ansible-playbook -i hosts ansible_playbook/localhost.yml
-
-# ansible caskにないものをmas経由で
+# いろいろmas経由で
 brew install mas
 
 mas install 540348655 #Monostnap
@@ -100,19 +98,43 @@ mas install 493949693 #iMage Tools
 mas install 466314666 #Don't Sleep
 mas install 407963104 #Pixelmator
 mas install 880001334 #Reeder
+mas install 1035236694 # commanderOne
 
-# その他手動で入れるアプリ
-# iterm2
-# alfred
-# commanderOne / mac app store
-# cd to
-# docker
-# filezilla
-# keka
-# onyx
-# better touch tool
+# font ricty powerline
+brew tap sanemat/font
+brew install ricty --with-powerline
+cp -f /opt/homebrew/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+fc-cache -vf
 
-sudo softwareupdate --install-rosetta
+# font nerdfont
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font
+
+# on rosetta は、最後に
+echo "Apple Silicon（M1/M2など）搭載のMacマシンですか？（Y/n）"
+read IS_APPLE_SILICON
+if [ "$IS_APPLE_SILICON" != "n" ]; then
+  sudo softwareupdate --install-rosetta
+fi
 brew install google-japanese-ime
-
 brew install qlvideo
+
+# 手動対応
+echo ""
+echo "※現在、下記の手動対応が必要です。"
+echo " - iTerm2 の設定でフォントを Ricty Powerline に変更"
+echo " - FileZila の手動インストール（brew install できない）"
+echo " - IMEをGoogle日本語入力に切り替え"
+echo " - 各種アプリケーションの初期設定（アプリケーションフォルダでとりあえず全部一回起動する）"
+echo " - 起動時の「じゃーん♪」を消すには、設定⇨サウンド→起動時にサウンドを再生をオフ"
+echo " - "
+
+# 再起動
+echo ""
+echo "上記が終わったら、再起動してください。再起動しますか？（y/N）"
+read IS_REBOOT
+if [ "$IS_REBOOT" = "y" ]; then
+    sudo reboot
+else
+    echo "処理を終了します。手動で再起動してください。"
+fi
