@@ -1,3 +1,7 @@
+#!/bin/sh
+
+set -eu
+
 ## Mac Initial Provisioning Shell Sctipt for settings
 ##
 
@@ -34,23 +38,27 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write -g AppleShowAllExtensions -bool true
 
 # ========== New Finder windows show ==========
-defaults write com.apple.finder NewWindowTarget -string "${HOME}"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
 # ========== Show warning before emptying the Trash ==========
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Finderにディスクを表示
+# defaults write com.apple.finder SidebarDevicesSectionDisclosedState -bool true # 効かない
 
 # Finderの再起動
 killall Finder
 
 
 
-# Dockの設定変更 =====================
+# Dockの設定変更 基本的に再起動が必要っぽい =====================
 
 # Dock に標準で入っている全てのアプリを消す、Finder とごみ箱は消えない）
 defaults write com.apple.dock persistent-apps -array
 
 # Set the icon size （アイコンサイズの設定）
-defaults write com.apple.dock tilesize -int 64
+defaults write com.apple.dock tilesize -int 36
 
 # Magnificate the Dock （Dock の拡大機能を入にする）
 defaults write com.apple.dock magnification -bool true
@@ -72,19 +80,19 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # defaults write com.apple.finder QLEnableTextSelection -bool true #効かない
 
 # Enable `Tap to click` （タップでクリックを有効にする）
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # Save screenshots as PNGs （スクリーンショット保存形式をPNGにする）
-defaults write com.apple.screencapture type -string "png"
+# defaults write com.apple.screencapture type -string "png" # default で png
 
 # Avoid creating `.DS_Store` files on network volumes （ネットワークディスクで、`.DS_Store` ファイルを作らない）
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Hide the battery percentage from the menu bar （バッテリーのパーセントを表示にする）
-defaults write com.apple.menuextra.battery ShowPercent -string "Yes"
+# defaults write com.apple.menuextra.battery ShowPercent -string "Yes" # 効かない
 
 # Date options: Show the day of the week: on （曜日を表示）
-defaults write com.apple.menuextra.clock DateFormat -string "EEE HH:mm"
+# defaults write com.apple.menuextra.clock DateFormat -string "EEE HH:mm" # デフォルトで表示
 
 # Always show scrollbars
 defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
@@ -94,7 +102,7 @@ defaults write com.apple.inputmethod.Kotoeri 'JIMPrefLiveConversionKey' -bool fa
 killall -HUP JapaneseIM
 
 # Disable “natural” (Lion-style) scrolling
-defaults write .GlobalPreferences com.apple.swipescrolldirection -bool false
+defaults write com.apple.swipescrolldirection -bool false
 
 # key repeat delay
 defaults write -g InitialKeyRepeat -int 15
@@ -152,14 +160,35 @@ sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 # vimrc copy =======================
 cp ./_.vimrc ~/.vimrc
 cp -r ./_.vim ~/.vim
-cp ./_.gvimrc ~/gvimrc
+cp ./_.gvimrc ~/.gvimrc
 
 gem install rsense
 gem install rubocop
 gem install rdoc
 gem install refe2
 
+sh ./dein_installer.sh ~/.cache/dein
+
+echo ""
+echo "上記表示は無視して大丈夫です。"
+echo "vimとdeinのインストールが完了しているはずです。vimを起動してみていただき、dein#install()が始まると思います。"
+echo "おそらくいくつかエラーがでるので、その際は、何回かインストールしたり、':call dein#update()'を実行してみてください。"
+
+echo "設定→dockとメニューバー→バッテリー→割合（％）を表示で、バッテリーのパーセント表示をONにできます。"
+echo ""
+
+echo "ディスプレイの描画サイズなどdefaultsコマンドでは調整できないものがあります。設定アプリから見直してください。"
+
 # ログアウト or 再起動が必要 ===========================================
-sudo reboot
+echo ""
+echo "再起動しますか？（y/N） 再起動後、'macos_apps_install.sh'を実行してください。"
+
+read IS_REBOOT
+if [ "$IS_REBOOT" = "y" ]; then
+    sudo reboot
+else
+    echo "処理を終了します。手動で再起動してください。"
+fi
+
 
 

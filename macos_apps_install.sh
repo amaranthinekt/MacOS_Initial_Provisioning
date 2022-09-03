@@ -1,7 +1,11 @@
+#!/bin/sh
+
+#set -eu
+
 # 開発環境のインストール =========================
 #
 # 参考情報
-# 
+#
 # Mac の開発環境構築を自動化する (2015 年初旬編)
 # http://t-wada.hatenablog.jp/entry/mac-provisioning-by-ansible
 
@@ -28,10 +32,15 @@ esac
 
 
 # xcode
-sudo xcodebuild -license
+#xcode-select --install
+#sudo xcodebuild -license
 
 # Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/amaranthine/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Homebrew Update
 brew update
@@ -48,29 +57,39 @@ brew install ansible
 
 # コメントアウトしているものは手動インストールの方が良いと判断したもの
 
-#brew install --cask google-chrome
-#brew install --cask mozilla-firefox
-#brew install --cask vivaldi
-
-# brew install --cask vagrant
-# brew install --cask virtualbox
-brew install --cask visual-studio-code
+brew install google-chrome
+brew install firefox
+brew install vivaldi
+# brew install vagrant
+# brew install virtualbox
+brew install visual-studio-code
+brew install filezilla
+brew install iterm2
+brew install adobe-reader
+brew install vlc
+brew install imageoptim
+brew install keka
+brew install docker
+brew install virtualbox
+brew install bitwarden
 
 # quickLook plugin all
-brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase qlvideo
+brew install qlcolorcode qlstephen qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase
 
+brew install phpstorm
+brew install rubymine
 
 # Ansible用アプリケーションインストール先パス指定
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Ansibleを実行
-ansible-playbook -i hosts ansible_playbook/localhost.yml
+#ansible-playbook -i hosts ansible_playbook/localhost.yml
 
 # ansible caskにないものをmas経由で
 brew install mas
 
 mas install 540348655 #Monostnap
-mas install 417375580 #BetterSnapTool
+#mas install 417375580 #BetterSnapTool
 
 mas install 803453959 #Slack
 mas install 1024640650 #CotEditor
@@ -91,3 +110,9 @@ mas install 880001334 #Reeder
 # filezilla
 # keka
 # onyx
+# better touch tool
+
+sudo softwareupdate --install-rosetta
+brew install google-japanese-ime
+
+brew install qlvideo
