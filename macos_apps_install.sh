@@ -63,7 +63,7 @@ brew install vivaldi
 # brew install vagrant
 # brew install virtualbox
 brew install visual-studio-code
-brew install alfred
+# brew install alfred
 brew install iterm2
 brew install adobe-reader
 brew install vlc
@@ -72,7 +72,7 @@ brew install keka
 brew install docker
 brew install docker-compose
 brew install virtualbox
-brew install bitwarden
+# brew install bitwarden # ブラウザ統合が MacAppStore版しか使えない
 brew install bettertouchtool
 brew install onyx
 brew install cd-to
@@ -89,6 +89,7 @@ brew install mas
 mas install 540348655 #Monostnap
 #mas install 417375580 #BetterSnapTool
 
+mas install 1352778147 # bitwarden
 mas install 803453959 #Slack
 mas install 1024640650 #CotEditor
 mas install 414855915 #WinArchiver Lite
@@ -119,6 +120,9 @@ fi
 brew install google-japanese-ime
 brew install qlvideo
 
+# sudoをTouch IDで通す
+curl -sL https://gist.githubusercontent.com/hkitago/9a46d433e0ba5f625fb530982e9a4151/raw/e5e7926578a58354bad915f5dde94010c4b6a7f1/install-pam_tid-and-pam_reattach.sh | bash
+
 # 手動対応
 echo ""
 echo "※現在、下記の手動対応が必要です。"
@@ -127,7 +131,7 @@ echo " - FileZila の手動インストール（brew install できない）"
 echo " - IMEをGoogle日本語入力に切り替え"
 echo " - 各種アプリケーションの初期設定（アプリケーションフォルダでとりあえず全部一回起動する）"
 echo " - 起動時の「じゃーん♪」を消すには、設定⇨サウンド→起動時にサウンドを再生をオフ"
-echo " - "
+echo " - Alfred 4（Powerpack購入済み）のインストール（5だと購入が必要）"
 
 # 再起動
 echo ""
