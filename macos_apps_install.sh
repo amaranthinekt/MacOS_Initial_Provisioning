@@ -51,6 +51,9 @@ brew install python
 # Ansible install
 brew install ansible
 
+brew install tmux
+cp ./_.tmux.conf ~/.tmux.conf
+
 # brew cask
 #自動化厨の自分がhomebrew-caskを使わなくなった理由 : Query OK.
 #https://queryok.ikuwow.com/entry/stop-brew-cask/
