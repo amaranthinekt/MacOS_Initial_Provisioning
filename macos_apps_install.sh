@@ -79,7 +79,7 @@ brew install onyx
 brew install cd-to
 
 # quickLook plugin all
-brew install qlcolorcode qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase
+brew install qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase
 
 brew install phpstorm
 brew install rubymine
