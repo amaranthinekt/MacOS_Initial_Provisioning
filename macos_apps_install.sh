@@ -69,9 +69,10 @@ brew install adobe-reader
 brew install vlc
 brew install imageoptim
 brew install keka
-brew install docker
-brew install docker-compose
-brew install virtualbox
+brew install --cask docker # docker-desktopを入れる
+# brew install docker # コマンドラインだけで、containerdは動かない
+# brew install docker-compose # コマンドラインだけで、containerdは動かない
+# brew install virtualbox
 # brew install bitwarden # ブラウザ統合が MacAppStore版しか使えない
 brew install bettertouchtool
 brew install onyx
