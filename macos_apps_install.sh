@@ -115,6 +115,11 @@ fc-cache -vf
 brew tap homebrew/cask-fonts
 brew install font-hack-nerd-font
 
+# nodejs voltaというバージョンマネージャーを利用する
+curl https://get.volta.sh | bash
+source ~/.zshrc
+volta install node@14
+
 # on rosetta は、最後に
 echo "Apple Silicon（M1/M2など）搭載のMacマシンですか？（Y/n）"
 read IS_APPLE_SILICON
