@@ -66,6 +66,8 @@ defaults write com.apple.dock magnification -bool true
 # Set Dock orientation to left
 defaults write com.apple.dock orientation left
 
+# 仮想デスクトップの順番を勝手に並び替えない
+defaults write com.apple.dock mru-spaces -int 1
 
 # Bottom left screen corner → Mission Control （左下 → Mission Control）
 defaults write com.apple.dock wvous-bl-corner -int 2
