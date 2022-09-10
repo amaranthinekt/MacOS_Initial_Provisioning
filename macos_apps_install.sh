@@ -107,7 +107,7 @@ mas install 1035236694 # commanderOne
 
 # font ricty powerline
 brew tap sanemat/font
-brew install ricty --with-powerline
+brew install ricty --with-powerlinew
 cp -f /opt/homebrew/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
 
@@ -131,6 +131,16 @@ brew install qlvideo
 
 # sudoをTouch IDで通す
 curl -sL https://gist.githubusercontent.com/hkitago/9a46d433e0ba5f625fb530982e9a4151/raw/e5e7926578a58354bad915f5dde94010c4b6a7f1/install-pam_tid-and-pam_reattach.sh | bash
+
+# logicool（海外では logitech 日本のlogitecとは違う）
+echo "Logicool Optionsをインストールしますか？"
+read IS_WANT_TO_LOGICOOL_OPTIONS
+if IS_WANT_TO_LOGICOOL_OPTIONS
+    brew tap homebrew/cask-drivers
+    brew install logitech-options
+else
+    echo "logicool Optionsのインストールをキャンセルしました。"
+fi
 
 # 手動対応
 echo ""
