@@ -138,6 +138,8 @@ read IS_WANT_TO_LOGICOOL_OPTIONS
 if IS_WANT_TO_LOGICOOL_OPTIONS
     brew tap homebrew/cask-drivers
     brew install logitech-options
+
+    brew install hammerspoon
 else
     echo "logicool Optionsのインストールをキャンセルしました。"
 fi
@@ -151,6 +153,7 @@ echo " - IMEをGoogle日本語入力に切り替え"
 echo " - 各種アプリケーションの初期設定（アプリケーションフォルダでとりあえず全部一回起動する）"
 echo " - 起動時の「じゃーん♪」を消すには、設定⇨サウンド→起動時にサウンドを再生をオフ"
 echo " - Alfred 4（Powerpack購入済み）のインストール（5だと購入が必要）"
+echo " - 右クリック＋カーソルでスクロールしたい場合は、hammerspoonの起動と設定が必要"
 
 # 再起動
 echo ""
