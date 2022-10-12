@@ -42,6 +42,7 @@ esac
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/amaranthine/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+
 # Homebrew Update
 brew update
 
@@ -80,6 +81,7 @@ brew install --cask docker # docker-desktopを入れる
 brew install bettertouchtool
 brew install onyx
 brew install cd-to
+brew install box-drive
 
 # quickLook plugin all
 brew install qlmarkdown quicklook-json webpquicklook suspicious-package quicklookase
@@ -105,9 +107,63 @@ mas install 407963104 #Pixelmator
 mas install 880001334 #Reeder
 mas install 1035236694 # commanderOne
 
+# for vim =========================
+brew install rbenv ruby-build
+rbenv init
+echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
+
+rbenv install 2.7.6
+rbenv global 2.7.6
+
+gem install rsense
+gem install rubocop
+gem install rdoc
+gem install refe2
+
+sh ./dein_installer.sh ~/.cache/dein
+
+echo ""
+echo "上記表示は無視して大丈夫です。"
+echo "vimとdeinのインストールが完了しているはずです。vimを起動してみていただき、dein#install()が始まると思います。"
+echo "おそらくいくつかエラーがでるので、その際は、何回かインストールしたり、':call dein#update()'を実行してみてください。"
+
+echo "設定→dockとメニューバー→バッテリー→割合（％）を表示で、バッテリーのパーセント表示をONにできます。"
+echo ""
+
+echo "ディスプレイの描画サイズなどdefaultsコマンドでは調整できないものがあります。設定アプリから見直してください。"
+
+# zsh ===========================
+brew install zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  sudo chmod -R go-w '/opt/homebrew/share'
+  autoload -Uz compinit
+  rm -f ~/.zcompdump
+  compinit
+fi
+
+brew install zsh-autosuggestions
+echo "# zsh" >> .zshrc
+echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+echo "" >> .zshrc
+
+source ~/.zshrc
+
+# zsh フレームワーク Zim =============
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+# sed -> gnu sed
+brew install gnu-sed
+echo "alias sed='gsed'" >> .zshrc
+source ~/.zshrc
+
+# theme: https://zimfw.sh/docs/themes/
+sed s/asciiship/eriner/ ~/.zimrc
+
 # font ricty powerline
 brew tap sanemat/font
-brew install ricty --with-powerlinew
+brew install ricty --with-powerline
 cp -f /opt/homebrew/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
 
@@ -133,9 +189,9 @@ brew install qlvideo
 curl -sL https://gist.githubusercontent.com/hkitago/9a46d433e0ba5f625fb530982e9a4151/raw/e5e7926578a58354bad915f5dde94010c4b6a7f1/install-pam_tid-and-pam_reattach.sh | bash
 
 # logicool（海外では logitech 日本のlogitecとは違う）
-echo "Logicool Optionsをインストールしますか？"
+echo "Logicool Optionsをインストールしますか？（Y/n）"
 read IS_WANT_TO_LOGICOOL_OPTIONS
-if IS_WANT_TO_LOGICOOL_OPTIONS
+if [ "$IS_WANT_TO_LOGICOOL_OPTIONS" != "n" ]; then
     brew tap homebrew/cask-drivers
     brew install logitech-options
 
@@ -150,6 +206,7 @@ echo "※現在、下記の手動対応が必要です。"
 echo " - iTerm2 の設定でフォントを Ricty Powerline に変更"
 echo " - FileZila の手動インストール（brew install できない）"
 echo " - IMEをGoogle日本語入力に切り替え"
+echo " - 設定 > キーボードにて、「キーのリピート」と「リピート入力認識までの時間」を両方とも一番速く、短くする"
 echo " - 各種アプリケーションの初期設定（アプリケーションフォルダでとりあえず全部一回起動する）"
 echo " - 起動時の「じゃーん♪」を消すには、設定⇨サウンド→起動時にサウンドを再生をオフ"
 echo " - Alfred 4（Powerpack購入済み）のインストール（5だと購入が必要）"

@@ -2,7 +2,7 @@
 
 set -eu
 
-## Mac Initial Provisioning Shell Sctipt for settings
+## Mac Initial Provisioning Shell Script for settings
 ##
 
 # 手動でOSアップデートが必要か。
@@ -101,16 +101,18 @@ defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
 
 # ライブ変換をオフにします
 defaults write com.apple.inputmethod.Kotoeri 'JIMPrefLiveConversionKey' -bool false
-killall -HUP JapaneseIM
+# killall -HUP JapaneseIM-RomajiTyping
 
 # Disable “natural” (Lion-style) scrolling
 defaults write com.apple.swipescrolldirection -bool false
 
 # key repeat delay
-defaults write -g InitialKeyRepeat -int 15
+# defaults write -g InitialKeyRepeat -int 15
+# 設定アプリからやった方が良い
 
 # Set a blazingly fast keyboard repeat rate
-defaults write .GlobalPreferences InitialKeyRepeat -int 5
+# defaults write .GlobalPreferences InitialKeyRepeat -int 5
+# 設定アプリからやった方が良い
 
 # 2. [システム環境設定]，[キーボード] の pnl[キーボード] > chb[F1、F2 などのすべてのキーを標準ファンクションキーとして使用] = "オン"
 defaults write -g com.apple.keyboard.fnState -bool true
@@ -149,54 +151,12 @@ cp ./_.vimrc ~/.vimrc
 cp -r ./_.vim ~/.vim
 cp ./_.gvimrc ~/.gvimrc
 
-gem install rsense
-gem install rubocop
-gem install rdoc
-gem install refe2
-
-sh ./dein_installer.sh ~/.cache/dein
-
-echo ""
-echo "上記表示は無視して大丈夫です。"
-echo "vimとdeinのインストールが完了しているはずです。vimを起動してみていただき、dein#install()が始まると思います。"
-echo "おそらくいくつかエラーがでるので、その際は、何回かインストールしたり、':call dein#update()'を実行してみてください。"
-
-echo "設定→dockとメニューバー→バッテリー→割合（％）を表示で、バッテリーのパーセント表示をONにできます。"
-echo ""
-
-echo "ディスプレイの描画サイズなどdefaultsコマンドでは調整できないものがあります。設定アプリから見直してください。"
+# gem install などは、権限の問題があるため、brewでRbenvでインストールしてから
 
 # zsh ===========================
 cp ./_.zshrc ~/.zshrc
 
-brew install zsh-completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  sudo chmod -R go-w '/opt/homebrew/share'
-  autoload -Uz compinit
-  rm -f ~/.zcompdump
-  compinit
-fi
-
-brew install zsh-autosuggestions
-echo "# zsh" >> .zshrc
-echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-echo "" >> .zshrc
-
-source ~/.zshrc
-
-# zsh フレームワーク Zim =============
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
-
-# sed -> gnu sed
-brew install gnu-sed
-echo "alias sed='gsed'" >> .zshrc
-source ~/.zshrc
-
-# theme: https://zimfw.sh/docs/themes/
-sed s/asciiship/eriner/ ~/.zimrc
-
+# あとは、brew install のあと
 
 # ログアウト or 再起動が必要 ===========
 echo ""
